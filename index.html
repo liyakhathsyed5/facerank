@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html>
+
+ <head>
+
+	<title>FaceRank - v1.0</title>
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	
+	<meta name="Author" content="Liyakhath Syed" />
+	<meta name="company" content="Liyakhath syed Productions" />
+
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<link rel="stylesheet" type="text/css" href="jqmobile.css" />
+
+	<script language="javascript" type="text/javascript" src="jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="jqform.js"></script>
+	<script language="javascript" type="text/javascript" src="jqmobile.js"></script>
+
+ </head>
+
+ <body>
+
+
+ <!-- PAGES AND SCREENS STARTS HERE........................................ -->
+
+
+
+  <div id="page_intro" data-role="page" align="center">
+
+	<h2>FaceRank</h2>
+	<img src="logo.png" width="10" height="10" />
+	<p>The FaceRank - Season 1. for the studentsof Narayana Junior College, lets you Rankthe students of the >college based on style,studies etc., <br />and decides the top ranking person  of the college</p><br /><br /><br /><br />
+	<a href="#page_intro2" data-transition="slide" class="ui-btn ui-btn-inline">Great! let me in</a>
+	<div>by Liyakhath Syed Productions<br />no &copy; copyrights reserved</div>
+
+  </div>
+
+  <div id="page_intro2" data-role="page" align="center">
+
+	<div><p> let people rank you to get you in the ranking list, the greater votes you get the greater rank you hold<br/>
+	<br/><a href="#page_uploadPData" data-transition="slideup" class="ui-btn ui-btn-inline">Yes,upload me</a><br /><br />
+	If you wish to just rank other people by not want yourselves to be ranked click below.</p>
+	<a href="#page_ranking" data-transition="slide" class="ui-btn ui-btn-inline" onclick="skipUploadPData()">skip</a></div>
+
+  </div>
+
+
+  <div id="page_uploadPData" data-role="page">
+	
+	<h3>your details here</h3>
+
+	<form id="form_uploadpData" action="#" method="post" onsubmit="return uploadPData(this);">
+		
+		<input type="text" name="pname" placeholder="your name" required />
+		AGE
+		<select name="page">
+			<option>15</option>
+			<option>16</option>
+			<option>17</option>
+		</select>
+		GENDER
+		<select  name="pgender">
+			<option>MALE</option>
+			<option>FEMALE</option>
+		</select>
+		GROUP
+		<select name="pgroup">
+			<option>M.P.C</option>
+			<option>Bi.P.C</option>
+			<option>C.E.C</option>
+		</select>
+		
+		<input type="text" name="pdob" placeholder="Date of Birth" required />
+
+		<input type="file" name="pic" />
+
+		<textarea name="pabout">about me</textarea>
+
+		<input type="submit" value="SUBMIT" />
+	</form>
+
+		<a href="#page_ranking" data-transition="slide" id="startPageRanking" class="hide">.</a>
+
+  </div>
+
+  <div id="page_ranking" data-role="page">
+
+  <a href="#page_viewRanks" data-transition="slide" class="hide" id="startViewRanks">.</a>
+
+	
+	
+	<h3 align="center" id="question">who is the one</h3><br /><br /><br />
+
+	<div id="place_p1">
+
+		<a href="#rank_done1" data-rel="popup" onclick="return rank_for_p1()"  data-transition="slide">
+		<img id="img_1" src="logo.png" width="30%" height="30%" /></a>
+
+		<div><a href="#page_pinfo1" data-rel="popup" data-transition="slideup" id="p1name">PERSON ONE</a></div>
+
+	</div>
+
+	<div id="place_p2">
+
+		<a  href="#rank_done2" data-rel="popup" onclick="return rank_for_p2()" data-transition="slide">
+		<img id="img_2" src="logo.png" width="30%" height="30%" /></a>
+
+		<div><a href="#page_pinfo2" data-rel="popup" data-transition="slideup" id="p2name">PERSON TWO</a></div>
+	
+	
+	</div>
+
+
+
+	<h1 align="center">Vs</h1>
+
+
+
+     <div id="page_pinfo1" data-role="popup" data-position-to="window">
+		<p>No User Selected</p>
+    </div>
+     <div id="page_pinfo2" data-role="popup" data-position-to="window">
+		<p>No User Selected</p>
+    </div>
+
+     <div id="rank_done1" data-role="popup" data-position-to="#img_1">
+		<img src="tick.png" width="40px" height="40px" />
+    </div>
+     <div id="rank_done2" data-role="popup" data-position-to="#img_2">
+		<img src="tick2.png" width="40px" height="40px" />
+    </div>
+
+<img src="loading.gif" width="20%" height="20%"  id="loading"/>
+  </div>
+
+  <div id="page_viewRanks" data-role="page" align="center">
+
+	
+	
+	<div data-role="header" class="ui-title" data-position="fixed">	
+		<h4>Rankings</h4>
+	</div>
+	
+	<div  data-role="main">
+	
+	<ol id="rank_place" data-role="listview" data-filter="true" data-filter-placeholder="search person.">
+	<li><img src="logo.png" />hey! select a category</li>
+	</ol>
+	
+
+	</div>
+
+
+	<div data-role="footer" data-position="fixed">
+			<form action="#" method="#" onsubmit="#" style="display:inline;">
+		<select name="category" onchange="rank_category_changed(this)">
+			<option>CATEGORY</option>
+			<option>ALL</option>
+			<option>HANDSOME</option>
+			<option>BOLDER</option>
+			<option>STUDIES</option>
+			<option>SPORTS</option>
+			<option>INTELLIGENCE</option>
+			<option>STRONGER</option>
+		</select>
+		</form>
+	</div>
+
+<a href="#" data-rel="back" class="hide" id="returnToRank">.</a>
+
+
+  </div>
+
+
+
+  <!-- PAGES AND SCREENS ENDS HERE........................................ -->
+
+  <script language="javascript" type="text/javascript" src="script.js"></script>
+
+ </body>
+
+</html>
